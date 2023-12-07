@@ -14,6 +14,9 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @TenantId
+    private String tenantId;
+
     private LocalDateTime soldDate;
 
     private String vehicle;
@@ -26,6 +29,14 @@ public class Sale {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
     }
 
     public LocalDateTime getSoldDate() {
@@ -69,6 +80,7 @@ public class Sale {
     public String toString() {
         return "Sale{" +
                 "id=" + id +
+                ", tenantId='" + tenantId + '\'' +
                 ", soldDate=" + soldDate +
                 ", vehicle='" + vehicle + '\'' +
                 ", customer='" + customer + '\'' +
