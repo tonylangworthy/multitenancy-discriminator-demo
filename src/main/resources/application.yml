@@ -1,0 +1,28 @@
+spring:
+  security:
+    # For development only!
+    user:
+      password: Acura21
+  jpa:
+    #    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
+#          auto: update
+#          auto: create-drop
+        show_sql: true
+  datasource:
+    url: jdbc:postgresql://${DMS_DB_HOST:localhost}:${DMS_DB_PORT:5435}/${DMS_DB_NAME:demo_dealership}?currentSchema=${DMS_DB_SCHEMA:dms}&useSSL=false
+    driverClassName: org.postgresql.Driver
+    username: "${DMS_DB_USERNAME:postgres}"
+    password: "${DMS_DB_PASSWORD:password}"
+    dialect: org.hibernate.dialect.PostgreSQL9Dialect
+  liquibase:
+    change-log: 'classpath:db/liquibase-changelog.xml'
+#    enabled: true
+    enabled: false
+
+multitenancy:
+  http:
+    header-name: X-TenantId

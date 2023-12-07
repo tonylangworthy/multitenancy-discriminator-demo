@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="dms-1.0" author="webbdealer" runInTransaction="false">
+        <sql endDelimiter=";">
+            CREATE DATABASE "demo_dealership";
+        </sql>
+    </changeSet>
+    <changeSet id="dms-1.1" author="webbdealer" runInTransaction="false">
+        <sql endDelimiter=";">
+            CREATE DATABASE "demo_dealership";
+            CREATE DATABASE "demo_account_1";
+            CREATE SCHEMA IF NOT EXISTS sale;
+        </sql>
+    </changeSet>
+    <changeSet id="dms-1.1" author="webbdealer">
+        <sql endDelimiter=";">
+            CREATE TABLE IF NOT EXISTS sale.dealership (
+            id bigserial not null,
+            name varchar(255),
+            address varchar(255),
+            primary key (id)
+            );
+            CREATE TABLE IF NOT EXISTS sale.employee (
+            id bigserial not null,
+            firstName varchar(255),
+            lastName varchar(255),
+            position varchar(255),
+            primary key (id)
+            );
+            CREATE TABLE IF NOT EXISTS sale.sale (
+            id bigserial not null,
+            soldDate timestamp(6) ,
+            customer varchar(255),
+            primary key (id)
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="dms-1.2" author="webbdealer" runInTransaction="false">
+        <sql dbms="postgresql" endDelimiter=";" splitStatements="true" stripComments="true">
+            CREATE DATABASE "demo_account_2";
+            CREATE SCHEMA IF NOT EXISTS sale;
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>
